@@ -1,0 +1,135 @@
+/* ============================================================
+   style.css — GeoSmart SK Kiandongo
+   ============================================================ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --teal-50:#E1F5EE; --teal-600:#0F6E56; --teal-800:#085041;
+  --blue-50:#E6F1FB; --blue-600:#185FA5; --blue-800:#0C447C;
+  --amber-50:#FAEEDA; --amber-600:#854F0B; --amber-800:#633806;
+  --purple-50:#EEEDFE; --purple-600:#534AB7; --purple-800:#3C3489;
+  --red-50:#FCEBEB; --red-800:#791F1F;
+  --green-50:#EAF3DE; --green-800:#27500A;
+  --gray-100:#D3D1C7; --gray-200:#B4B2A9; --gray-800:#444441;
+  --radius:10px; --radius-sm:6px;
+  --shadow:0 2px 12px rgba(0,0,0,0.08);
+  --font:-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+body { font-family:var(--font); font-size:15px; background:#F5F5F0; color:#2C2C2A; min-height:100vh; }
+
+/* Login */
+.page-login { display:flex; align-items:center; justify-content:center; padding:24px; background:linear-gradient(135deg,#E1F5EE 0%,#E6F1FB 100%); }
+.login-card { background:#fff; border-radius:16px; box-shadow:var(--shadow); width:100%; max-width:360px; overflow:hidden; }
+.login-logo { background:var(--teal-800); color:#fff; text-align:center; padding:32px 24px 24px; }
+.login-logo .logo-icon { font-size:40px; margin-bottom:8px; }
+.login-logo h1 { font-size:26px; font-weight:600; letter-spacing:-0.5px; }
+.sekolah-nama  { font-size:14px; opacity:0.9; margin-top:4px; font-weight:500; }
+.sekolah-daerah{ font-size:12px; opacity:0.7; margin-top:2px; }
+.login-body { padding:28px 24px; display:flex; flex-direction:column; align-items:center; gap:16px; }
+.login-info { font-size:13px; color:#5F5E5A; text-align:center; }
+.login-status { font-size:13px; color:var(--teal-600); text-align:center; }
+.login-error  { font-size:13px; color:var(--red-800); text-align:center; background:var(--red-50); padding:10px 14px; border-radius:var(--radius-sm); width:100%; }
+.login-footer { background:#F5F5F0; text-align:center; padding:12px; color:#888780; font-size:11px; }
+
+/* Topbar */
+.topbar { background:var(--teal-800); color:#fff; display:flex; align-items:center; justify-content:space-between; padding:0 16px; height:52px; position:sticky; top:0; z-index:100; box-shadow:0 1px 4px rgba(0,0,0,0.15); }
+.topbar-left { display:flex; align-items:center; gap:8px; }
+.topbar-logo { font-size:20px; }
+.topbar-title { font-size:16px; font-weight:600; }
+.topbar-right { display:flex; align-items:center; gap:8px; }
+.user-chip { font-size:12px; background:rgba(255,255,255,0.15); padding:4px 10px; border-radius:20px; max-width:140px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.badge-admin { font-size:10px; background:var(--amber-50); color:var(--amber-800); padding:2px 7px; border-radius:10px; margin-left:4px; font-weight:500; }
+
+/* Butang */
+.btn-primary { background:var(--teal-800); color:#fff; border:none; padding:10px 20px; border-radius:var(--radius-sm); font-size:14px; font-weight:500; cursor:pointer; }
+.btn-primary:hover { background:var(--teal-600); }
+.btn-ghost { background:rgba(255,255,255,0.15); color:#fff; border:1px solid rgba(255,255,255,0.3); padding:6px 12px; border-radius:var(--radius-sm); font-size:13px; cursor:pointer; }
+.btn-ghost:hover { background:rgba(255,255,255,0.25); }
+.btn-sm { padding:5px 10px; font-size:12px; }
+
+/* Dashboard */
+.dashboard-main { max-width:560px; margin:0 auto; padding:16px; display:flex; flex-direction:column; gap:16px; }
+
+/* Jam Digital - Ciri #5 */
+.jam-digital { background:#fff; border-radius:var(--radius); padding:12px 16px; box-shadow:var(--shadow); text-align:center; }
+.jam-digital .jam-besar { font-size:32px; font-weight:700; color:var(--teal-800); letter-spacing:2px; line-height:1; }
+.jam-digital .tarikh-hari { font-size:13px; color:#5F5E5A; margin-top:4px; }
+
+/* Banner GPS - Ciri #6 */
+.banner-gps { background:var(--amber-50); border:1px solid #BA7517; border-radius:8px; padding:10px 14px; font-size:13px; color:var(--amber-800); display:flex; align-items:center; gap:10px; }
+.banner-gps button { margin-left:auto; background:#BA7517; color:#fff; border:none; padding:5px 12px; border-radius:6px; font-size:12px; cursor:pointer; white-space:nowrap; }
+
+/* Status */
+.status-card { background:#fff; border-radius:var(--radius); padding:20px; display:flex; align-items:center; gap:16px; box-shadow:var(--shadow); border-left:4px solid var(--gray-200); }
+.status-card.status-hadir  { border-left-color:#1D9E75; }
+.status-card.status-lewat  { border-left-color:#BA7517; }
+.status-card.status-absent { border-left-color:#E24B4A; }
+.status-icon  { font-size:36px; }
+.status-label { font-size:17px; font-weight:600; }
+.status-sub   { font-size:13px; color:#888780; margin-top:3px; }
+
+/* Action grid */
+.action-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+.action-btn { background:#fff; border:1px solid var(--gray-100); border-radius:var(--radius); padding:16px 12px; display:flex; flex-direction:column; align-items:center; gap:8px; font-size:13px; font-weight:500; color:#2C2C2A; cursor:pointer; box-shadow:var(--shadow); transition:transform 0.1s; }
+.action-btn:hover:not(:disabled) { transform:translateY(-1px); box-shadow:0 4px 16px rgba(0,0,0,0.12); }
+.action-btn:disabled { opacity:0.45; cursor:default; }
+.action-icon { font-size:28px; }
+
+/* Rekod */
+.rekod-section { background:#fff; border-radius:var(--radius); padding:16px; box-shadow:var(--shadow); }
+.section-title { font-size:15px; font-weight:600; margin-bottom:12px; }
+.rekod-kosong  { font-size:13px; color:#888780; text-align:center; padding:16px; }
+.rekod-item { display:flex; gap:12px; align-items:center; padding:10px; border-radius:var(--radius-sm); border-left:3px solid var(--gray-200); margin-bottom:6px; font-size:13px; background:#F5F5F0; }
+.rekod-item.rekod-hadir  { border-left-color:#1D9E75; }
+.rekod-item.rekod-lewat  { border-left-color:#BA7517; }
+.rekod-masa   { font-weight:500; }
+.rekod-status { margin-left:auto; }
+.rekod-jarak  { color:#888780; font-size:12px; }
+
+/* Admin */
+.admin-main { max-width:900px; margin:0 auto; padding:16px; }
+.tab-nav { display:flex; gap:4px; background:#fff; border-radius:var(--radius); padding:4px; margin-bottom:16px; box-shadow:var(--shadow); overflow-x:auto; }
+.tab-btn { padding:8px 16px; border:none; background:none; border-radius:7px; font-size:13px; font-weight:500; color:#5F5E5A; cursor:pointer; white-space:nowrap; }
+.tab-btn.active { background:var(--teal-800); color:#fff; }
+.tab-panel { display:block; }
+.tab-panel.hidden { display:none; }
+.panel-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:14px; flex-wrap:wrap; gap:8px; }
+.panel-header h2 { font-size:17px; font-weight:600; }
+.stat-row { display:flex; gap:10px; margin-bottom:16px; flex-wrap:wrap; }
+.stat-box { flex:1; min-width:80px; text-align:center; padding:14px 8px; border-radius:var(--radius); font-size:13px; font-weight:500; }
+.stat-box span { display:block; font-size:26px; font-weight:700; line-height:1.1; margin-bottom:4px; }
+.filter-row { display:flex; gap:10px; align-items:center; margin-bottom:14px; }
+.filter-row label { font-size:13px; display:flex; align-items:center; gap:8px; }
+.filter-row input { padding:6px 10px; border:1px solid var(--gray-100); border-radius:var(--radius-sm); font-size:13px; }
+
+/* Jadual */
+.data-table-wrap { overflow-x:auto; background:#fff; border-radius:var(--radius); box-shadow:var(--shadow); }
+.data-table { width:100%; border-collapse:collapse; font-size:13px; }
+.data-table th { background:#F5F5F0; text-align:left; padding:10px 14px; font-weight:600; font-size:12px; color:#5F5E5A; border-bottom:1px solid var(--gray-100); }
+.data-table td { padding:10px 14px; border-bottom:1px solid #F0EEE8; }
+.data-table tr:last-child td { border-bottom:none; }
+.data-table tr:hover td { background:#FAFAF7; }
+
+/* Badge */
+.badge-status { font-size:11px; font-weight:500; padding:3px 9px; border-radius:10px; }
+.badge-hadir  { background:var(--teal-50);   color:var(--teal-800); }
+.badge-lewat  { background:var(--amber-50);  color:var(--amber-800); }
+.badge-tidak-hadir { background:var(--red-50); color:var(--red-800); }
+.badge-menunggu { background:var(--blue-50); color:var(--blue-800); }
+.badge-admin  { background:var(--amber-50);  color:var(--amber-800); }
+.badge-guru   { background:var(--teal-50);   color:var(--teal-800); }
+.badge-manual { font-size:11px; background:var(--purple-50); color:var(--purple-800); padding:2px 7px; border-radius:10px; font-weight:500; }
+
+/* Butang admin table */
+.btn-danger { background:#C0392B; color:#fff; border:none; padding:4px 10px; border-radius:6px; font-size:11px; cursor:pointer; }
+.btn-info   { background:var(--blue-600); color:#fff; border:none; padding:4px 10px; border-radius:6px; font-size:11px; cursor:pointer; }
+
+/* Utiliti */
+.hidden    { display:none !important; }
+.loading   { text-align:center; padding:24px; color:#888780; font-size:13px; }
+.placeholder { text-align:center; padding:24px; color:#888780; font-size:13px; }
+
+/* Responsif */
+@media (max-width:480px) {
+  .stat-box { min-width:calc(50% - 5px); }
+  .tab-btn  { padding:7px 12px; font-size:12px; }
+}

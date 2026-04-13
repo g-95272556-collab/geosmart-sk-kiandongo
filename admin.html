@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Panel Admin — GeoSmart SK Kiandongo</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .modal { display: none; }
+    .modal.aktif {
+      display: flex; position: fixed; inset: 0;
+      background: rgba(0,0,0,0.45); align-items: center;
+      justify-content: center; padding: 16px; z-index: 200;
+    }
+    .modal-box {
+      background: #fff; border-radius: 14px; padding: 24px;
+      width: 100%; max-width: 400px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+    }
+    .modal-box h3 { font-size: 17px; font-weight: 600; margin-bottom: 10px; }
+    .modal-box label {
+      display: block; font-size: 13px; font-weight: 500;
+      color: #5F5E5A; margin-bottom: 12px;
+    }
+    .modal-box input, .modal-box select, .modal-box textarea {
+      display: block; width: 100%; margin-top: 4px;
+      padding: 8px 11px; border: 1px solid #D3D1C7;
+      border-radius: 6px; font-size: 14px; font-family: inherit;
+    }
+    .modal-actions { display: flex; justify-content: flex-end; gap: 8px; margin-top: 20px; }
+    .btn-danger { background: #C0392B; color: #fff; border: none; padding: 5px 10px; border-radius: 6px; font-size: 12px; cursor: pointer; }
+    .btn-info   { background: #2980B9; color: #fff; border: none; padding: 5px 10px; border-radius: 6px; font-size: 12px; cursor: pointer; }
+    .badge-manual { font-size:11px; background:#EEEDFE; color:#3C3489; padding:2px 7px; border-radius:10px; font-weight:500; }
+  </style>
+</head>
+<body class="page-admin">
+
+  <header class="topbar">
+    <div class="topbar-left">
+      <span class="topbar-logo">📍</span>
+      <span class="topbar-title">GeoSmart <span class="badge-admin">Admin</span></span>
+    </div>
+    <div class="topbar-right">
+      <span id="user-nama" class="user-chip"></span>
+      <button class="btn-ghost btn-sm" onclick="window.location='dashboard.html'">Dashboard</button>
+      <button class="btn-ghost btn-sm" onclick="Auth.logout()">Log Keluar</button>
+    </div>
+  </header>
+
+  <main class="admin-main">
+
+    <nav class="tab-nav">
+      <button class="tab-btn active" data-tab="kehadiran">Kehadiran Hari Ini</button>
+      <button class="tab-btn" data-tab="laporan">Laporan</button>
+      <button class="tab-btn" data-tab="cuti">Permohonan Cuti</button>
+      <button class="tab-btn" data-tab="kakitangan">Kakitangan</button>
+    </nav>
+
+    <!-- Tab: Kehadiran -->
+    <section id="tab-kehadiran" class="tab-panel active">
+      <div class="panel-header">
+        <h2>Kehadiran — <span id="tarikh-hari"></span></h2>
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          <button class="btn-primary btn-sm" onclick="Admin.hantarLaporan()">📤 Laporan WA</button>
+          <!-- Ciri #7: Rumusan Bulanan -->
+          <button class="btn-primary btn-sm" style="background:#185FA5" onclick="Admin.hantarRumusanBulanan()">📊 Rumusan Bulanan</button>
+        </div>
+      </div>
+      <div class="stat-row">
+        <div class="stat-box" style="background:#E1F5EE;color:#085041"><span id="stat-hadir">—</span><small>Hadir</small></div>
+        <div class="stat-box" style="background:#FAEEDA;color:#633806"><span id="stat-lewat">—</span><small>Lewat</small></div>
+        <div class="stat-box" style="background:#FCEBEB;color:#791F1F"><span id="stat-absent">—</span><small>Tidak Hadir</small></div>
+        <div class="stat-box" style="background:#E6F1FB;color:#0C447C"><span id="stat-cuti">—</span><small>Cuti</small></div>
+      </div>
+      <div id="senarai-kehadiran" class="data-table-wrap">
+        <div class="loading">Memuatkan data…</div>
+      </div>
+    </section>
+
+    <!-- Tab: Laporan -->
+    <section id="tab-laporan" class="tab-panel hidden">
+      <div class="panel-header"><h2>Laporan Kehadiran</h2></div>
+      <div class="filter-row">
+        <label>Bulan <input type="month" id="filter-bulan"></label>
+        <button class="btn-primary btn-sm" onclick="Admin.muatLaporan()">Muat Data</button>
+      </div>
+      <div id="laporan-output" class="data-table-wrap">
+        <div class="placeholder">Pilih bulan untuk papar laporan</div>
+      </div>
+    </section>
+
+    <!-- Tab: Cuti -->
+    <section id="tab-cuti" class="tab-panel hidden">
+      <div class="panel-header"><h2>Permohonan Cuti</h2></div>
+      <div id="senarai-cuti" class="data-table-wrap"><div class="loading">Memuatkan…</div></div>
+    </section>
+
+    <!-- Tab: Kakitangan -->
+    <section id="tab-kakitangan" class="tab-panel hidden">
+      <div class="panel-header"><h2>Senarai Kakitangan</h2></div>
+      <div id="senarai-kakitangan" class="data-table-wrap">
+        <table class="data-table">
+          <thead><tr><th>Nama</th><th>Emel ID Delima</th><th>No. WhatsApp</th><th>Peranan</th></tr></thead>
+          <tbody id="kakitangan-tbody"></tbody>
+        </table>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Modal Surat Tunjuk Sebab (Ciri #2) -->
+  <div id="modal-sts" class="modal">
+    <div class="modal-box">
+      <h3>📄 Surat Tunjuk Sebab</h3>
+      <label>Nama Guru<input type="text" id="sts-nama" readonly style="background:#F5F5F0"></label>
+      <label>Tarikh Tidak Hadir<input type="date" id="sts-tarikh"></label>
+      <label>Tempoh Jawab (hari bekerja)
+        <select id="sts-tempoh">
+          <option value="3">3 hari bekerja</option>
+          <option value="7" selected>7 hari bekerja</option>
+          <option value="14">14 hari bekerja</option>
+        </select>
+      </label>
+      <div class="modal-actions">
+        <button class="btn-ghost" onclick="Admin.tutupModalSTS()" style="background:#F5F5F0;color:#2C2C2A;border-color:#D3D1C7">Batal</button>
+        <button class="btn-primary" onclick="Admin.hantarSTS()">Jana &amp; Cetak</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+  <script src="js/config.js"></script>
+  <script src="js/crypto.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/sheets.js"></script>
+  <script src="js/fonnte.js"></script>
+  <script src="js/pdf.js"></script>
+  <script src="js/cron.js"></script>
+  <script src="js/admin.js"></script>
+  <script>
+    window.addEventListener("load", function() {
+      var c = setInterval(function() {
+        if (typeof google !== "undefined" && google.accounts && google.accounts.oauth2) {
+          clearInterval(c); Auth.initTokenClient();
+        }
+      }, 100);
+    });
+  </script>
+</body>
+</html>

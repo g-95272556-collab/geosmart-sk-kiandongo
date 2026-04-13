@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GeoSmart — SK Kiandongo</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+</head>
+<body class="page-login">
+  <div class="login-card">
+    <div class="login-logo">
+      <div class="logo-icon">📍</div>
+      <h1>GeoSmart</h1>
+      <p class="sekolah-nama">SK Kiandongo</p>
+      <p class="sekolah-daerah">PPD Telupid-Tongod, Sabah</p>
+    </div>
+    <div class="login-body">
+      <p class="login-info">Log masuk menggunakan akaun ID Delima anda</p>
+      <div id="g_id_onload" data-client_id="" data-callback="handleCredentialResponse" data-auto_prompt="false"></div>
+      <div class="g_id_signin" data-type="standard" data-size="large" data-theme="outline"
+           data-text="sign_in_with" data-shape="rectangular" data-logo_alignment="left" data-width="280"></div>
+      <div id="login-status" class="login-status hidden"></div>
+      <div id="login-error"  class="login-error hidden"></div>
+    </div>
+    <div class="login-footer"><small>Sistem Kehadiran Berasaskan Lokasi · 2026</small></div>
+  </div>
+  <script src="js/config.js"></script>
+  <script src="js/crypto.js"></script>
+  <script src="js/auth.js"></script>
+  <script>
+    if (sessionStorage.getItem('geosmart_user')) window.location.replace('dashboard.html');
+    document.getElementById('g_id_onload').setAttribute('data-client_id', CONFIG.GOOGLE_CLIENT_ID);
+    window.addEventListener('load', function() {
+      var check = setInterval(function() {
+        if (typeof google !== 'undefined' && google.accounts && google.accounts.oauth2) {
+          clearInterval(check); Auth.initTokenClient();
+        }
+      }, 100);
+    });
+    function handleCredentialResponse(response) {
+      document.getElementById('login-status').classList.remove('hidden');
+      document.getElementById('login-status').textContent = 'Mengesahkan…';
+      Auth.handleLogin(response);
+    }
+  </script>
+</body>
+</html>
