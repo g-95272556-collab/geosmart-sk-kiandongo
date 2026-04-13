@@ -102,7 +102,7 @@ const PDF = (() => {
   // ── CIRI #1: Slip Kebenaran Keluar Pejabat ───────────────
   // No. Rujukan: SKKNDGO.500-5/2/4/YYYY/MM/XXXX
   function janaSlipKeluarPejabat(data) {
-    const noRuj = _noRujukan('SKKNDGO.500-5/2/4/');
+    const noRuj = _noRujukan('SKKNDGO.500-5/2/4/1/');
     const tarikh = _tarikhRasmi();
 
     const html = `
@@ -155,7 +155,7 @@ const PDF = (() => {
   // ── CIRI #2: Surat Tunjuk Sebab Kehadiran ─────────────────
   // No. Rujukan: SKKNDGO.500-5/2/3/YYYY/MM/XXXX
   function janaSuratTunjukSebab(data) {
-    const noRuj  = _noRujukan('SKKNDGO.500-5/2/3/');
+    const noRuj  = _noRujukan('SKKNDGO.500-5/2/3/1/');
     const tarikh = _tarikhRasmi();
     const tempoh = data.tempoh_jawab || '7';
 

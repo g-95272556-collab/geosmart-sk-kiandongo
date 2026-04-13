@@ -4,6 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>GeoSmart — SK Kiandongo</title>
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#085041">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="GeoSmart">
+  <link rel="apple-touch-icon" href="icons/icon-152.png">
   <link rel="stylesheet" href="css/style.css">
   <script src="https://accounts.google.com/gsi/client" async defer></script>
 </head>
@@ -29,6 +35,9 @@
   <script src="js/crypto.js"></script>
   <script src="js/auth.js"></script>
   <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/sw.js').catch(() => {});
+    }
     if (sessionStorage.getItem('geosmart_user')) window.location.replace('dashboard.html');
     document.getElementById('g_id_onload').setAttribute('data-client_id', CONFIG.GOOGLE_CLIENT_ID);
     window.addEventListener('load', function() {

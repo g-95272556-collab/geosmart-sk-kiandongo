@@ -4,88 +4,42 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dashboard — GeoSmart SK Kiandongo</title>
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#085041">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="GeoSmart">
+  <link rel="apple-touch-icon" href="icons/icon-152.png">
   <link rel="stylesheet" href="css/style.css">
   <style>
-    /* Modal overlay */
     .modal { display: none; }
-    .modal.aktif {
-      display: flex; position: fixed; inset: 0;
-      background: rgba(0,0,0,0.45); align-items: center;
-      justify-content: center; padding: 16px; z-index: 200;
-    }
-    .modal-box {
-      background: #fff; border-radius: 14px; padding: 24px;
-      width: 100%; max-width: 400px;
-      box-shadow: 0 8px 32px rgba(0,0,0,0.15);
-    }
+    .modal.aktif { display: flex; position: fixed; inset: 0; background: rgba(0,0,0,0.5); align-items: center; justify-content: center; padding: 16px; z-index: 200; }
+    .modal-box { background: #fff; border-radius: 14px; padding: 24px; width: 100%; max-width: 420px; max-height: 90vh; overflow-y: auto; box-shadow: 0 8px 32px rgba(0,0,0,0.2); }
     .modal-box h3 { font-size: 17px; font-weight: 600; margin-bottom: 10px; }
-    .modal-nota {
-      font-size: 12px; color: #633806; background: #FAEEDA;
-      border-left: 3px solid #BA7517; padding: 8px 12px;
-      border-radius: 6px; margin-bottom: 14px; line-height: 1.5;
-    }
-    .modal-box label {
-      display: block; font-size: 13px; font-weight: 500;
-      color: #5F5E5A; margin-bottom: 12px;
-    }
-    .modal-box input, .modal-box select, .modal-box textarea {
-      display: block; width: 100%; margin-top: 4px;
-      padding: 8px 11px; border: 1px solid #D3D1C7;
-      border-radius: 6px; font-size: 14px; font-family: inherit;
-    }
+    .modal-nota { font-size: 12px; color: #633806; background: #FAEEDA; border-left: 3px solid #BA7517; padding: 8px 12px; border-radius: 6px; margin-bottom: 14px; line-height: 1.5; }
+    .modal-box label { display: block; font-size: 13px; font-weight: 500; color: #5F5E5A; margin-bottom: 12px; }
+    .modal-box input, .modal-box select, .modal-box textarea { display: block; width: 100%; margin-top: 4px; padding: 8px 11px; border: 1px solid #D3D1C7; border-radius: 6px; font-size: 14px; font-family: inherit; }
     .modal-box textarea { resize: vertical; }
     .modal-actions { display: flex; justify-content: flex-end; gap: 8px; margin-top: 20px; }
-
-    /* Jam digital */
-    .jam-digital {
-      background: #fff;
-      border-radius: 10px;
-      padding: 12px 16px;
-      box-shadow: 0 2px 12px rgba(0,0,0,0.08);
-      text-align: center;
-    }
-    .jam-digital .jam-besar {
-      font-size: 32px;
-      font-weight: 700;
-      color: #085041;
-      letter-spacing: 2px;
-      line-height: 1;
-    }
-    .jam-digital .tarikh-hari {
-      font-size: 13px;
-      color: #5F5E5A;
-      margin-top: 4px;
-    }
-
-    /* Badge manual */
-    .badge-manual {
-      font-size: 11px; background: #EEEDFE; color: #3C3489;
-      padding: 2px 7px; border-radius: 10px; font-weight: 500;
-    }
-
-    /* GPS offline banner */
-    .banner-gps {
-      background: #FAEEDA;
-      border: 1px solid #BA7517;
-      border-radius: 8px;
-      padding: 10px 14px;
-      font-size: 13px;
-      color: #633806;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-    .banner-gps button {
-      margin-left: auto;
-      background: #BA7517;
-      color: #fff;
-      border: none;
-      padding: 5px 12px;
-      border-radius: 6px;
-      font-size: 12px;
-      cursor: pointer;
-      white-space: nowrap;
-    }
+    .jam-digital { background: #fff; border-radius: 10px; padding: 12px 16px; box-shadow: 0 2px 12px rgba(0,0,0,0.08); text-align: center; }
+    .jam-digital .jam-besar { font-size: 32px; font-weight: 700; color: #085041; letter-spacing: 2px; line-height: 1; }
+    .jam-digital .tarikh-hari { font-size: 13px; color: #5F5E5A; margin-top: 4px; }
+    .banner-gps { background: #FAEEDA; border: 1px solid #BA7517; border-radius: 8px; padding: 10px 14px; font-size: 13px; color: #633806; display: flex; align-items: center; gap: 10px; }
+    .banner-gps button { margin-left: auto; background: #BA7517; color: #fff; border: none; padding: 5px 12px; border-radius: 6px; font-size: 12px; cursor: pointer; }
+    .badge-manual { font-size: 11px; background: #EEEDFE; color: #3C3489; padding: 2px 7px; border-radius: 10px; font-weight: 500; }
+    .upload-zone { border: 2px dashed #D3D1C7; border-radius: 8px; padding: 16px; text-align: center; cursor: pointer; transition: 0.2s; margin-top: 4px; }
+    .upload-zone:hover, .upload-zone.drag { border-color: #0F6E56; background: #E1F5EE; }
+    .upload-zone p { font-size: 12px; color: #5F5E5A; margin: 3px 0; }
+    .upload-ikon { font-size: 28px; }
+    .upload-pratonton { width: 100%; max-height: 160px; object-fit: contain; border-radius: 6px; margin-top: 8px; display: none; border: 1px solid #D3D1C7; }
+    .upload-nama { font-size: 11px; color: #085041; background: #E1F5EE; padding: 4px 10px; border-radius: 10px; margin-top: 6px; display: none; text-align: center; }
+    .btn-kamera { width: 100%; background: #185FA5; color: #fff; border: none; padding: 9px; border-radius: 6px; font-size: 13px; font-weight: 500; cursor: pointer; margin-top: 8px; }
+    #video-kamera { width: 100%; border-radius: 8px; background: #000; display: block; }
+    #canvas-kamera { display: none; }
+    .btn-tangkap { width: 100%; background: #085041; color: #fff; border: none; padding: 12px; border-radius: 8px; font-size: 15px; font-weight: 600; cursor: pointer; margin-top: 12px; }
+    #banner-pwa { background: #E1F5EE; border: 1px solid #0F6E56; border-radius: 8px; padding: 10px 14px; font-size: 13px; color: #085041; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+    #banner-pwa .btn-pasang { background: #085041; color: #fff; border: none; padding: 5px 12px; border-radius: 6px; font-size: 12px; cursor: pointer; margin-left: auto; }
+    #banner-pwa .btn-tutup-pwa { background: none; color: #085041; border: none; font-size: 16px; cursor: pointer; padding: 0 4px; }
   </style>
 </head>
 <body class="page-dashboard">
@@ -104,15 +58,22 @@
 
   <main class="dashboard-main">
 
-    <!-- Ciri #5: Jam Digital + Tarikh/Hari -->
+    <!-- PWA Install Banner -->
+    <div id="banner-pwa" class="hidden">
+      <span>📲 Pasang GeoSmart sebagai aplikasi!</span>
+      <button class="btn-pasang" onclick="App.pasangPWA()">Pasang</button>
+      <button class="btn-tutup-pwa" onclick="document.getElementById('banner-pwa').classList.add('hidden')">✕</button>
+    </div>
+
+    <!-- Jam Digital -->
     <div class="jam-digital">
       <div class="jam-besar" id="jam-skrin">--:--:--</div>
       <div class="tarikh-hari" id="tarikh-skrin">—</div>
     </div>
 
-    <!-- Ciri #6: Banner GPS Offline (tersembunyi secara default) -->
+    <!-- Banner GPS Offline -->
     <div class="banner-gps hidden" id="banner-gps">
-      <span>📵 Data GPS tiada / tidak tepat. Sila daftar masuk secara manual.</span>
+      <span>📵 GPS tidak dapat dikesan. Gunakan Log Manual.</span>
       <button onclick="App.bukaLogManual()">Log Manual</button>
     </div>
 
@@ -128,33 +89,26 @@
     <!-- Butang Tindakan -->
     <section class="action-grid">
       <button class="action-btn" id="btn-checkin" onclick="Geo.doCheckin()" disabled>
-        <span class="action-icon">✅</span>
-        <span>Daftar Masuk</span>
+        <span class="action-icon">✅</span><span>Daftar Masuk</span>
       </button>
-      <button class="action-btn" id="btn-logmanual" onclick="App.bukaLogManual()">
-        <span class="action-icon">✏️</span>
-        <span>Log Manual</span>
+      <button class="action-btn" onclick="App.bukaLogManual()">
+        <span class="action-icon">✏️</span><span>Log Manual</span>
       </button>
-      <button class="action-btn" id="btn-cuti" onclick="App.bukaCuti()">
-        <span class="action-icon">📋</span>
-        <span>Mohon Cuti</span>
+      <button class="action-btn" onclick="App.bukaCuti()">
+        <span class="action-icon">📋</span><span>Mohon Cuti</span>
       </button>
-      <button class="action-btn" id="btn-tugasluar" onclick="App.bukaTugasLuar()">
-        <span class="action-icon">🚗</span>
-        <span>Tugas Luar</span>
+      <button class="action-btn" onclick="App.bukaTugasLuar()">
+        <span class="action-icon">🚗</span><span>Tugas Luar</span>
       </button>
-      <button class="action-btn" id="btn-keluarpejabat" onclick="App.bukaKeluarPejabat()">
-        <span class="action-icon">🚪</span>
-        <span>Keluar Pejabat</span>
+      <button class="action-btn" onclick="App.bukaKeluarPejabat()">
+        <span class="action-icon">🚪</span><span>Keluar Pejabat</span>
       </button>
     </section>
 
     <!-- Rekod Hari Ini -->
     <section class="rekod-section">
       <h2 class="section-title">Rekod Hari Ini</h2>
-      <div id="rekod-list" class="rekod-list">
-        <div class="rekod-kosong">Tiada rekod lagi</div>
-      </div>
+      <div id="rekod-list"><div class="rekod-kosong">Tiada rekod lagi</div></div>
     </section>
 
   </main>
@@ -163,7 +117,7 @@
   <div id="modal-logmanual" class="modal">
     <div class="modal-box">
       <h3>✏️ Log Kehadiran Manual</h3>
-      <p class="modal-nota">Gunakan fungsi ini jika GPS tidak berfungsi atau tiada rangkaian semasa waktu daftar masuk.</p>
+      <p class="modal-nota">Gunakan jika GPS tidak berfungsi atau tiada rangkaian.</p>
       <label>Masa Masuk<input type="time" id="lm-masa"></label>
       <label>Status
         <select id="lm-status">
@@ -171,31 +125,67 @@
           <option value="Lewat">⚠️ Lewat</option>
         </select>
       </label>
-      <label>Sebab Log Manual<textarea id="lm-sebab" rows="2" placeholder="Contoh: GPS tidak berfungsi, tiada rangkaian…"></textarea></label>
+      <label>Sebab<textarea id="lm-sebab" rows="2" placeholder="GPS tidak berfungsi…"></textarea></label>
       <div class="modal-actions">
-        <button class="btn-ghost" onclick="App.tutupModal('modal-logmanual')">Batal</button>
+        <button class="btn-ghost" onclick="App.tutupModal('modal-logmanual')" style="background:#F5F5F0;color:#2C2C2A;border-color:#D3D1C7">Batal</button>
         <button class="btn-primary" onclick="App.hantarLogManual()">Rekodkan</button>
       </div>
     </div>
   </div>
 
-  <!-- Modal Cuti -->
+  <!-- Modal Cuti + Upload Sijil Sakit -->
   <div id="modal-cuti" class="modal">
     <div class="modal-box">
-      <h3>Permohonan Cuti</h3>
+      <h3>📋 Permohonan Cuti</h3>
       <label>Tarikh Mula<input type="date" id="cuti-mula"></label>
       <label>Tarikh Tamat<input type="date" id="cuti-tamat"></label>
       <label>Jenis Cuti
-        <select id="cuti-jenis">
-          <option>Cuti Sakit</option><option>Cuti Rehat</option>
-          <option>Cuti Tanpa Rekod</option><option>Cuti Kecemasan</option>
-          <option>Lain-lain</option>
+        <select id="cuti-jenis" onchange="App.toggleUploadSijil()">
+          <option value="Cuti Sakit">Cuti Sakit</option>
+          <option value="Cuti Rehat">Cuti Rehat</option>
+          <option value="Cuti Tanpa Rekod">Cuti Tanpa Rekod</option>
+          <option value="Cuti Kecemasan">Cuti Kecemasan</option>
+          <option value="Lain-lain">Lain-lain</option>
         </select>
       </label>
-      <label>Sebab / Catatan<textarea id="cuti-sebab" rows="3"></textarea></label>
+      <label>Sebab / Catatan<textarea id="cuti-sebab" rows="2"></textarea></label>
+
+      <!-- Ciri #9: Upload Sijil Sakit -->
+      <div id="bahagian-sijil">
+        <div style="font-size:13px;font-weight:500;color:#5F5E5A;margin-bottom:6px">
+          📎 Sijil Sakit <span style="font-size:11px;color:#888780;font-weight:400">(wajib untuk Cuti Sakit)</span>
+        </div>
+        <div class="upload-zone" id="upload-zone"
+             onclick="document.getElementById('input-sijil').click()"
+             ondragover="event.preventDefault();this.classList.add('drag')"
+             ondragleave="this.classList.remove('drag')"
+             ondrop="App.handleDrop(event)">
+          <div class="upload-ikon">🏥</div>
+          <p><strong>Klik untuk pilih fail</strong> atau seret ke sini</p>
+          <p>JPG, PNG, WebP · Maks 5MB</p>
+        </div>
+        <input type="file" id="input-sijil" accept="image/*" style="display:none" onchange="App.handleUploadSijil(event)">
+        <button class="btn-kamera" onclick="App.bukaKamera()">📷 Ambil Gambar dengan Kamera</button>
+        <img id="pratonton-sijil" class="upload-pratonton" alt="Pratonton Sijil">
+        <div id="nama-fail-sijil" class="upload-nama"></div>
+      </div>
+
       <div class="modal-actions">
-        <button class="btn-ghost" onclick="App.tutupModal('modal-cuti')">Batal</button>
+        <button class="btn-ghost" onclick="App.tutupModal('modal-cuti')" style="background:#F5F5F0;color:#2C2C2A;border-color:#D3D1C7">Batal</button>
         <button class="btn-primary" onclick="App.hantarCuti()">Hantar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Kamera -->
+  <div id="modal-kamera" class="modal">
+    <div class="modal-box">
+      <h3>📷 Ambil Gambar Sijil Sakit</h3>
+      <video id="video-kamera" autoplay playsinline></video>
+      <canvas id="canvas-kamera"></canvas>
+      <button class="btn-tangkap" onclick="App.tangkapGambarKamera()">📸 Tangkap Gambar</button>
+      <div class="modal-actions" style="margin-top:8px">
+        <button class="btn-ghost" onclick="App.tutupKamera()" style="background:#F5F5F0;color:#2C2C2A;border-color:#D3D1C7">Batal</button>
       </div>
     </div>
   </div>
@@ -203,12 +193,12 @@
   <!-- Modal Tugas Luar -->
   <div id="modal-tugasluar" class="modal">
     <div class="modal-box">
-      <h3>Perakuan Tugas Luar</h3>
+      <h3>🚗 Perakuan Tugas Luar</h3>
       <label>Tarikh<input type="date" id="tl-tarikh"></label>
       <label>Destinasi<input type="text" id="tl-destinasi" placeholder="Contoh: PPD Telupid"></label>
       <label>Tujuan<textarea id="tl-tujuan" rows="3"></textarea></label>
       <div class="modal-actions">
-        <button class="btn-ghost" onclick="App.tutupModal('modal-tugasluar')">Batal</button>
+        <button class="btn-ghost" onclick="App.tutupModal('modal-tugasluar')" style="background:#F5F5F0;color:#2C2C2A;border-color:#D3D1C7">Batal</button>
         <button class="btn-primary" onclick="App.hantarTugasLuar()">Hantar</button>
       </div>
     </div>
@@ -217,12 +207,12 @@
   <!-- Modal Keluar Pejabat -->
   <div id="modal-keluar" class="modal">
     <div class="modal-box">
-      <h3>Kebenaran Keluar Pejabat</h3>
+      <h3>🚪 Kebenaran Keluar Pejabat</h3>
       <label>Masa Keluar<input type="time" id="kp-masa"></label>
       <label>Destinasi<input type="text" id="kp-destinasi"></label>
       <label>Sebab<textarea id="kp-sebab" rows="2"></textarea></label>
       <div class="modal-actions">
-        <button class="btn-ghost" onclick="App.tutupModal('modal-keluar')">Batal</button>
+        <button class="btn-ghost" onclick="App.tutupModal('modal-keluar')" style="background:#F5F5F0;color:#2C2C2A;border-color:#D3D1C7">Batal</button>
         <button class="btn-primary" onclick="App.hantarKeluarPejabat()">Hantar</button>
       </div>
     </div>
@@ -236,9 +226,17 @@
   <script src="js/fonnte.js"></script>
   <script src="js/geo.js"></script>
   <script src="js/pdf.js"></script>
+  <script src="js/upload.js"></script>
   <script src="js/cron.js"></script>
   <script src="js/app.js"></script>
   <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js')
+          .then(r => console.log('[PWA] SW:', r.scope))
+          .catch(e => console.warn('[PWA] SW gagal:', e));
+      });
+    }
     window.addEventListener("load", function() {
       var c = setInterval(function() {
         if (typeof google !== "undefined" && google.accounts && google.accounts.oauth2) {
