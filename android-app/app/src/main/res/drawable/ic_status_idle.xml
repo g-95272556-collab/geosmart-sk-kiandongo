@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="80dp"
+    android:height="80dp"
+    android:viewportWidth="80"
+    android:viewportHeight="80">
+    <!-- Bulatan latar -->
+    <path
+        android:fillColor="#E8F5E9"
+        android:pathData="M40,80A40,40 0,0 1,40 0,40,40 0,0 1,40 80Z" />
+    <!-- Ikon orang duduk -->
+    <path
+        android:fillColor="#4CAF50"
+        android:pathData="M40,18a5,5 0,1,0 0,10 5,5 0,0,0 0,-10zM32,32v12h3v16h10V44h3V32H32z" />
+</vector>

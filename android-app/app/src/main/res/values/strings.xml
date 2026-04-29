@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Nama & Tagline Aplikasi -->
+    <string name="app_name">GeoSmart Aktif</string>
+    <string name="app_tagline">Penjaga Kesihatan Pergerakan Anda</string>
+
+    <!-- Status -->
+    <string name="status_monitoring">Pemantauan Aktif</string>
+    <string name="status_stopped">Pemantauan Dihentikan</string>
+    <string name="status_idle_alert">Anda Telah Lama Diam!</string>
+    <string name="status_moving">Anda Sedang Bergerak</string>
+    <string name="status_icon_desc">Ikon status aktiviti</string>
+
+    <!-- Label -->
+    <string name="label_idle_duration">Masa Tidak Aktif</string>
+    <string name="label_last_activity">Aktiviti Terakhir</string>
+    <string name="label_idle_threshold">Tempoh sebelum peringatan</string>
+    <string name="label_movement_duration">Tempoh pergerakan minimum</string>
+    <string name="label_movement_timer">Masa Pergerakan Berlalu</string>
+
+    <!-- Nilai Default -->
+    <string name="idle_time_default">00:00</string>
+    <string name="minutes_format">%d minit</string>
+    <string name="movement_target_hint">Sasaran: 10 minit bergerak</string>
+
+    <!-- Tetapan -->
+    <string name="settings_title">Tetapan Peringatan</string>
+
+    <!-- Butang -->
+    <string name="btn_start_movement">Mula Bergerak</string>
+    <string name="btn_complete_movement">Selesai</string>
+
+    <!-- Statistik -->
+    <string name="stats_title">Statistik Hari Ini</string>
+    <string name="stats_reminders_label">Peringatan\nDiterima</string>
+    <string name="stats_movements_label">Pergerakan\nSelesai</string>
+
+    <!-- Notifikasi Servis -->
+    <string name="channel_service_name">Pemantau Aktiviti</string>
+    <string name="channel_service_desc">Servis latar belakang untuk memantau aktiviti fizikal anda</string>
+    <string name="service_notification_title">GeoSmart Aktif sedang berjalan</string>
+    <string name="service_notification_text">Memantau aktiviti fizikal anda…</string>
+
+    <!-- Notifikasi Peringatan -->
+    <string name="channel_reminder_name">Peringatan Pergerakan</string>
+    <string name="channel_reminder_desc">Peringatan untuk melakukan pergerakan fizikal</string>
+    <string name="reminder_title">⚠️ Masa untuk Bergerak!</string>
+    <string name="reminder_text">Anda telah diam selama %1$d minit. Sila bergerak sekurang-kurangnya %2$d minit.</string>
+    <string name="reminder_big_text">Anda telah tidak aktif selama %1$d minit.\n\nSila lakukan pergerakan fizikal sekurang-kurangnya %2$d minit untuk menjaga kesihatan anda. Berjalan, regangan, atau senaman ringan sudah mencukupi! 💪</string>
+
+    <!-- Tindakan Notifikasi -->
+    <string name="action_start_movement">🚶 Mula Bergerak</string>
+    <string name="action_snooze">⏰ Tangguh %d minit</string>
+
+    <!-- Kebenaran -->
+    <string name="permission_required">Kebenaran diperlukan untuk fungsi penuh aplikasi</string>
+</resources>
